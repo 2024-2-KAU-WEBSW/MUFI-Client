@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
-export const StartWrapper = styled.div`
+export const QnAWrapper = styled.div`
 ${({ theme: { mixin } }) => mixin.flexCenter({})};
 `;
