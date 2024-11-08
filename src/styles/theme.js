@@ -2,42 +2,15 @@ import mixin from './mixin';
 import { css } from 'styled-components';
 
 const colors = {
-  normal: {
-    white: '#FFFFFF',
-    background_white: '#F9F9F9',
-    black: '#000000',
-  },
-  pink: {
-    background_pink: '#FFBBCB',
-    dark_pink: '#FF7575',
-    btn_hover_pink: '#FFA8BC',
-    btn_pink: '#FFDFE7',
-    white_pink: '#FFEEF2',
-    warm_pink: '#FFA2A2',
-    red_pink: '#FF5959',
-  },
-  feeling: {
-    happy_yellow: '#FFF1A8',
-    sad_blue: '#B4F2FF',
-    surprised_orange: '#FFCA99',
-    relax_green: '#B9FFB3',
-    worried_purple: '#C3C9FF',
-    angry_pink: '#FFB6B6',
-  },
-  yellow: {
-    background_yellow: '#FFE768',
-  },
-  gray: {
-    white_gray: '#D9D9D9',
-    dark_gray: '#CBC7C7',
-    text_gray: '#858585',
-  },
-  gradient: {
-    gradient_pink:'linear-gradient(187deg, #FFBBCB 20.43%, #FFDAE3 81.25%, #DCC6CC 100.45%, #999 100.45%)',
-    gradient_yellow: 'linear-gradient(187deg, #FFE768 20.43%, #FFF3B7 84.05%)',
-    this_month_emotion_gradient:'background: var(--Warm-Pink, linear-gradient(180deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.39) 111.04%), #FFA2A2)',
-    gradient_black: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%)',
-  },
+  white: '#FFF',
+  black: '#000',
+  dark: '#2E2E2E',
+  darK_red: '#EA4343',
+  light_red: '#FEF6F6',
+  pink: '#F69190',
+  gray: '#616161',
+  light_gray: '#F5F5F5',
+
 };
 
 const fonts = {
