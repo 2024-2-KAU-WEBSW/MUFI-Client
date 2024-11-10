@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './Header.style';
-import { IcUser, MufiLogo } from '../../assets/svg';
+import { IcUser } from '../../assets/svg';
+import MufiLogo from '../../assets/png/MufiLogo.png';
 
 function Header() {
     const navigate = useNavigate();
@@ -27,7 +28,7 @@ function Header() {
                 QnA
                 </S.NavBtn>
             </S.NavWrapper>
-            <MufiLogo/>
+            <S.Logo><img src={MufiLogo}/></S.Logo>
             <S.LoginPageBtn onClick={()=>navLoginPage}><IcUser/><div>로그인 해주세요</div></S.LoginPageBtn>
         </S.HeaderWrapper>
     );
