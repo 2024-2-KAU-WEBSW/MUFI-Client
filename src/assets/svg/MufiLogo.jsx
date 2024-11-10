@@ -1,5 +1,5 @@
-const MufiLogo=()=>(
-<svg width="195" height="110" viewBox="0 0 195 110" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+const MufiLogo = () => (
+<svg width="195" height="110" viewBox="0 0 195 110" fill="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <rect width="195" height="110" fill="url(#pattern0_162_81)"/>
 <defs>
 <pattern id="pattern0_162_81" patternContentUnits="objectBoundingBox" width="1" height="1">
