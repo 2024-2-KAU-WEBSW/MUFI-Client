@@ -22,7 +22,6 @@ export const TitleGroup = styled.div`
   margin-top: 10.7rem; /*중앙*/
   margin-bottom: 10.7rem; 
   width: 100%;
-  
 `;
 
 export const SectionTitle = styled.div`
