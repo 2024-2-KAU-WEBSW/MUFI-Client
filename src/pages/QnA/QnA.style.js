@@ -4,7 +4,6 @@ import WaitingIcon from '../../assets/png/BiMessageRounded.png';
 import CompleteIcon from '../../assets/png/BiMessageRoundedCheck.png';
 
 export const QnAWrapper = styled.div`
-  ${({ theme: { mixin } }) => mixin.flexCenter({})};
   display: flex;
   flex-direction: column;
   align-items: center;
