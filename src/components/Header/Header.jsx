@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './Header.style';
 import { IcUser } from '../../assets/svg';
-import MufiLogo from '../../assets/png/MufiLogo.png';
+import MufiLogo from '../../assets/png/MufiLogoBlack.png';
 
 function Header() {
     const navigate = useNavigate();
