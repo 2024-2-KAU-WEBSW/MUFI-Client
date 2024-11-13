@@ -17,7 +17,7 @@ flex-direction: column;
 
 
 export const InfoText = styled.p`
-  ${({ theme }) => theme.fonts.r_20_44_5};
+  ${({ theme }) => theme.fonts.r_17_44_5};
   margin-left: 8rem;
   width: 65rem;
   color: rgba(255, 255, 255, 0.50);
@@ -39,7 +39,8 @@ export const DeveloperInfo = styled.div`
   top: 15rem;
   margin: 2rem 0;
   justify-content: space-between;
-  ${({ theme }) => theme.fonts.r_20};
+  ${({ theme }) => theme.fonts.r_17};
+  color: rgba(255, 255, 255, 0.70);
 
   & > span {
     text-align: right;
@@ -50,23 +51,24 @@ export const SocialIcons = styled.div`
   display: flex;
   position: relative;
   top: 3.5rem;
-  right: 25rem;
+  right: 20rem;
   gap: 1.5rem;
-  ${({ theme }) => theme.fonts.r_20};
+  ${({ theme }) => theme.fonts.r_17};
 `;
 
 export const Links = styled.div`
   display: flex;
   position: relative;
-  right: 10rem;
+  right: 5rem;
   justify-content: space-between;
  
-  ${({ theme }) => theme.fonts.r_20};
+  ${({ theme }) => theme.fonts.r_17};
+  color: rgba(255, 255, 255, 0.70);
 
   & > p {
     cursor: pointer;
     ${({ theme }) => theme.fonts.r_17};
-    width: 20rem;
+    width: 17rem;
 
     &:hover {
       text-decoration: underline;
