@@ -11,9 +11,6 @@ function Header() {
   const handleClick = (link) => {
     setActiveLink(link);
   };
-    const navLoginPage = ()=> {
-        navigate('/login');
-    }
 
     return (
         <S.HeaderWrapper>
@@ -60,7 +57,7 @@ function Header() {
         </S.NavLink>
             </S.Nav>
             <S.Logo><img src={MufiLogo}/></S.Logo>
-            <S.Login onClick={()=>navLoginPage}><IcUser/><div>로그인 해주세요</div></S.Login>
+            <S.Login onClick={()=>navigate('/login')}><IcUser/><div>로그인 해주세요</div></S.Login>
         </S.HeaderWrapper>
     );
 }
