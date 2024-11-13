@@ -7,3 +7,7 @@ export const ReservationWrapper = styled.div`
     height: calc(100vh - 11rem);
     background-color: ${({ theme }) => theme.colors.white};;  
 `;
+
+export const ReservContainerTop = styled.div`
+
+`;
