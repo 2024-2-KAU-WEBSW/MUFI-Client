@@ -5,5 +5,5 @@ ${({ theme: { mixin } }) => mixin.flexCenter({})};
 ${({ theme }) => theme.fonts.b_55_60}
 width:100%;
 height:100vh;
-background-color: #FFFFFF;
+background-color: ${({ theme }) => theme.colors.white};;
 `;

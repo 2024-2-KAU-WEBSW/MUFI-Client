@@ -2,16 +2,18 @@ import styled from 'styled-components';
 
 export const GalleryPhotoWrapper = styled.div`
     position: relative;
-    width: 28rem;
-    height: 80.731rem;
+    width: 30rem;
+    height: calc(100vh - 18rem);
     flex-shrink: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const FrameImage = styled.img`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     z-index: 1;
 `;

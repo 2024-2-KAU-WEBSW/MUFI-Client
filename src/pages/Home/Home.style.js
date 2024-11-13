@@ -5,5 +5,5 @@ ${({ theme: { mixin } }) => mixin.flexCenter({})} // flex 입니다 ! 어려운 
 ${({ theme }) => theme.fonts.b_55_60} // 폰트 설정입니다. 이거 추후 설정 값 바꿔야 할듯 !!
 width:100%;
 height:100vh;
-background-color: #2E2E2E;
+background-color: ${({ theme }) => theme.colors.gray};;
 `;
