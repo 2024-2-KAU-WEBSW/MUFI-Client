@@ -165,8 +165,15 @@ font-family: 'Pretendard';
 font-size: 2rem;
 font-style: normal;
 font-weight: 400;
-line-height: 4.4rem;
+line-height: 3.5rem;
 letter-spacing: 0.1rem;
+`,
+r_17: css`
+font-family: 'Pretendard';
+font-size: 1.7rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
 `,
 b_12: css`
 font-family: 'Pretendard';

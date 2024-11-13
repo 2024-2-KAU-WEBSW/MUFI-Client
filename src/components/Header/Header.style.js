@@ -12,8 +12,8 @@ export const HeaderWrapper = styled.header`
 
 export const Logo = styled.div`
 display: flex;
-position: absolute;
-  left: 43%;
+position: relative;
+left:-10%;
 `;
 
 export const Nav = styled.nav`
