@@ -28,7 +28,7 @@ function Header() {
                 QnA
                 </S.NavBtn>
             </S.NavWrapper>
-            <S.Logo><img src={MufiLogo}/></S.Logo>
+            <S.Logo onClick={() => navigate('/')}><img src={MufiLogo}/></S.Logo>
             <S.LoginPageBtn onClick={()=>navLoginPage}><IcUser/><div>로그인 해주세요</div></S.LoginPageBtn>
         </S.HeaderWrapper>
     );
