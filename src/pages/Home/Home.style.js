@@ -1,9 +1,19 @@
 import styled from "styled-components";
 
 export const HomeWrapper = styled.div`
-${({ theme: { mixin } }) => mixin.flexCenter({})} // flex 입니다 ! 어려운 사람들은 구지 mixin 안 쓰고 코드로 써도 됨!!
-${({ theme }) => theme.fonts.b_55_60} // 폰트 설정입니다. 이거 추후 설정 값 바꿔야 할듯 !!
-width:100%;
-height:100vh;
-background-color: ${({ theme }) => theme.colors.gray};;
+    ${({ theme }) => theme.fonts.b_55_60}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+    height: calc(100vh - 11rem);
+    background-color: ${({ theme }) => theme.colors.dark};;
+`;
+
+export const HomeArticleWrapper = styled.div`
+    margin-top: 2rem;
+`;
+
+export const HomeArticle = styled.img`
+    width: 100%;
 `;
