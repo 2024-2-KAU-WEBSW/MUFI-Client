@@ -13,7 +13,7 @@ function Login() {
     return (
         <S.LoginWrapper>
             <S.Login>Login</S.Login>
-            {isToken ? (
+            {!isToken ? (
                 <>
                 <S.LoginContext>카카오톡으로 간편하게 로그인하세요.</S.LoginContext>
                 <BtnKakaoLogin />
