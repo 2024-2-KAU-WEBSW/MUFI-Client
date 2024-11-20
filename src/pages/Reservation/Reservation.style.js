@@ -28,6 +28,12 @@ export const SharedCalendar = styled.div`
   border: 2px solid #2f16ff;
 `;
 
+export const TopHalf = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const InfoMessage = styled.p`
   font-size: 2rem;
   color: #000000;
@@ -93,19 +99,19 @@ export const FormContainer = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: center;
 `;
 
 export const ReservationForm = styled.form`
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3rem;
 
   input {
     width: 58rem;
     height: 6rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     padding: 0.8rem;
     border: 1px solid #000000;
     background-color: #ffffff;
@@ -115,12 +121,35 @@ export const ReservationForm = styled.form`
       opacity: 0.5;
     }
   }
+
+  input[type="file"] {
+    width: 58rem;
+    height: 6rem;
+    font-size: 1.5rem;
+    padding: 0.8rem;
+    background-color: ${({ theme }) => theme.colors.light_gray};
+    color: #000000;
+    cursor: pointer;
+    border-radius: 999px;
+
+    /* 커서 위에 올렸을 때 효과 */
+    &:hover {
+
+    }
+
+    /* 클릭했을 때 효과 */
+    &:focus {
+
+    }
+  }
 `;
 
 export const PhoneNumber = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
 
   svg {
     width: 2rem;
@@ -129,7 +158,7 @@ export const PhoneNumber = styled.div`
   }
 
   input {
-    width: 15rem;
+    width: 16rem;
     text-align: center;
   }
 `;
@@ -137,12 +166,14 @@ export const PhoneNumber = styled.div`
 export const CheckContainer = styled.div`
   text-align: center;
   font-size: 3.5rem;
-  font-weight: 700;
+  font-weight: 400;
   margin-top: 4rem;
   width: 40%;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  strong {
+    font-weight: 700;
+  }
 `;
 
 export const DetailCheck = styled.div`
@@ -151,9 +182,10 @@ export const DetailCheck = styled.div`
   line-height: 2rem;
   text-align: left;
   line-height: 4rem;
+  margin-bottom: 6rem;
 
   strong {
-    font-weight: bold;
+    font-weight: 700;
   }
 `;
 
@@ -162,8 +194,9 @@ export const DistanceCheck = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4rem;
+  gap: 0rem;
   font-weight: 400;
+  font-size: 3rem;
   color: ${({ theme }) => theme.colors.dark_red};
 `;
 
@@ -171,7 +204,7 @@ export const DistanceContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8rem;
+  gap: 37rem;
 `
 
 export const StyledDeliveryTruck = styled(CiDeliveryTruck)`
@@ -183,7 +216,7 @@ export const StyledDeliveryTruck = styled(CiDeliveryTruck)`
 export const StyledLine = styled.div`
   background-image: url(${DistLine});
   width: 45rem;
-  height: 100%;
+  height: 5rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -196,15 +229,42 @@ export const StyledUserIcon = styled(AiOutlineUser)`
 `;
 
 export const EstimateCheck = styled.div`
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 12rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const EstimateText = styled.div`
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000000;
+`;
+
+export const EstimateAmount = styled.div`
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000000;
+  opacity: 0.5;
+`;
+
+export const EstimateInfo = styled.p`
+  font-size: 1.4rem;
+  color: #000000;
+  opacity: 0.5;
 `;
 
 export const InquiryButton = styled.button`
-  width: 20rem;
-  height: 5rem;
+  position: absolute;
+  right: 10%;
+  top: 185%;
+  width: 18rem;
+  height: 8rem;
   background-image: url(${ReservButton});
+  background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -216,8 +276,9 @@ export const ReservContainerBottom = styled.div`
   width: 80%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 6rem;
+  gap: 4rem;
+  margin-top: 10rem;
+  margin-bottom: 8rem;
 `;
 
 export const TermsTitle = styled.div`
@@ -227,6 +288,9 @@ export const TermsTitle = styled.div`
 
 export const TermsAndCond = styled.p`
   font-size: 1.4rem;
-  line-height: 1.6rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
   color: ${({ theme }) => theme.colors.gray};
+  border: 2px solid #2f16ff;
 `;

@@ -34,7 +34,7 @@ function Reservation() {
     <S.ReservationWrapper>
       <S.ReservContainerTop>
         <S.SharedCalendar />
-        <div>
+        <S.TopHalf>
           <S.InfoMessage>견적은 행사 위치 및 이동 거리에 따라 달라질 수 있습니다.</S.InfoMessage>
           <S.QuickInquire>
             빠른 문의
@@ -44,7 +44,6 @@ function Reservation() {
             </S.QuickInquireIcons>
           </S.QuickInquire>
           <S.SelectDate>
-            {/* 연 선택 */}
             <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(Number(e.target.value))}
@@ -55,8 +54,6 @@ function Reservation() {
                 </option>
               ))}
             </select>
-
-            {/* 월 선택 */}
             <select
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(Number(e.target.value))}
@@ -67,8 +64,6 @@ function Reservation() {
                 </option>
               ))}
             </select>
-
-            {/* 일 선택 */}
             <select>
               {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => (
                 <option key={day} value={day}>
@@ -78,7 +73,7 @@ function Reservation() {
             </select>
           </S.SelectDate>
           <S.InfoMessageDate>좌측 캘린더에 표시된 날짜는 선택 불가합니다.</S.InfoMessageDate>
-        </div>
+        </S.TopHalf>
       </S.ReservContainerTop>
       <S.ReservContainerMiddle>
         <S.FormContainer>
@@ -156,21 +151,21 @@ function Reservation() {
           </S.ReservationForm>
         </S.FormContainer>
         <S.CheckContainer>
-          예약 정보 확인
+          <strong>예약 정보 확인</strong>
           <S.DetailCheck>
-            <strong>{formData.name || '이름 입력 필요'}</strong>
+            <strong>{formData.name || '이름'}</strong>
             <br />
-            <strong>{formData.event || '행사명 입력 필요'}</strong>
+            <strong>{formData.event || '행사명'}</strong>
             <br />
             <strong>
               {formData.phone1 && formData.phone2 && formData.phone3
                 ? `${formData.phone1}-${formData.phone2}-${formData.phone3}`
-                : '전화번호 입력 선택'}
+                : '전화번호'}
             </strong>
             <br />
-            <strong>{formData.address || '행사 주소 입력 필요'}</strong>
+            <strong>{formData.address || '행사 주소'}</strong>
             <br />
-            <strong>{formData.detailAddress || '상세 주소 입력 필요'}</strong>
+            <strong>{formData.detailAddress || '상세 주소'}</strong>
             <br />
             포토부스 개수: <strong>{formData.booths || '0'}</strong>
           </S.DetailCheck>
@@ -183,8 +178,14 @@ function Reservation() {
             약 4.4km
           </S.DistanceCheck>
           <S.EstimateCheck>
-            예상 금액: ₩ 999,999
+            <S.EstimateText>
+              예상 금액:
+            </S.EstimateText>
+            <S.EstimateAmount>
+              ₩ 999,999 
+            </S.EstimateAmount>
           </S.EstimateCheck>
+          <S.EstimateInfo>표시되는 예상 금액은 실제 견적과 다를 수 있습니다.</S.EstimateInfo>
           <S.InquiryButton />
         </S.CheckContainer>
       </S.ReservContainerMiddle>
