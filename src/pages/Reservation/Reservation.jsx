@@ -3,11 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsDashLg } from "react-icons/bs";
+import usePostReservation from '../../hooks/queries/usePostReservation';
 
 function Reservation() {
   const [selectedYear, setSelectedYear] = useState(2024);
   const [selectedMonth, setSelectedMonth] = useState(1);
   const [daysInMonth, setDaysInMonth] = useState(31);
+  const reservationAPI = usePostReservation();
+ 
 
   const [formData, setFormData] = useState({
     name: '',
@@ -24,6 +27,11 @@ function Reservation() {
   const handleInputChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
   };
+
+  const handleRegister = () => {
+    const response = reservationAPI.mutate(formData);
+    console.log(response.title);
+  }
 
   useEffect(() => {
     const days = new Date(selectedYear, selectedMonth, 0).getDate();
@@ -186,7 +194,7 @@ function Reservation() {
             </S.EstimateAmount>
           </S.EstimateCheck>
           <S.EstimateInfo>표시되는 예상 금액은 실제 견적과 다를 수 있습니다.</S.EstimateInfo>
-          <S.InquiryButton />
+          <S.InquiryButton onClick={()=>handleRegister} />
         </S.CheckContainer>
       </S.ReservContainerMiddle>
       <S.ReservContainerBottom>

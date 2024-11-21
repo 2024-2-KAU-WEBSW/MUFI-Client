@@ -1,3 +1,4 @@
+import useGetFAQTitle from '../../hooks/queries/useGetFAQTitle';
 import * as S from './QnA.style';
 import React, { useState } from 'react';
 
@@ -6,14 +7,10 @@ function QnA () {
     const [activeTab, setActiveTab] = useState("FAQ"); //usestate 이용
     const [isWriting, setIsWriting] = useState(false); //작성모드상태 추가
     const [selectedFaq, setSelectedFaq] = useState(null);
+    const faqTitle = useGetFAQTitle();
 
     // FAQ와 Q&A의 질문 목록
-    const faqQuestions = [
-        { id: 1, title: "인화사이즈는 어떻게 되나요?", content: "인화사이즈는 A4, A5 사이즈를 지원합니다." },
-        { id: 2, title: "촬영부스 인원 제한이 있나요?", content: "촬영부스는 최대 4명까지 가능합니다." },
-        { id: 3, title: "부스는 최대 몇 개까지 대여 가능한가요?", content: "최대 3개까지 대여가 가능합니다." },
-        { id: 4, title: "예약을 취소하거나 변경하고 싶습니다.", content: "예약 취소 및 변경은 예약일 기준 3일 전까지 가능합니다." },
-    ];
+    const faqQuestions = faqTitle;
     
     const qnaQuestions = [
         { question: "인화사이즈는 어떻게 되나요?", answered: false },
