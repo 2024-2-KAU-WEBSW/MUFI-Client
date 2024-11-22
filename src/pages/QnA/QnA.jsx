@@ -40,6 +40,7 @@ function QnA () {
     const handleBackClick = () => {
         setSelectedFaq(null);
     };
+
     
     return (
         <S.QnAWrapper>
@@ -89,14 +90,14 @@ function QnA () {
                         <S.TextArea placeholder="내용을 입력하세요." />
                         <S.SaveButton onClick={handleSave}>등록</S.SaveButton>
                     </>
-                ) : (
-                    activeTab === "FAQ"
-                    ? faqQuestions.map((faq) => (
+                ) : activeTab === "FAQ" ? (
+                    faqQuestions.map((faq) => (
                         <S.QuestionBox key={faq.id} onClick={() => handleFaqClick(faq)}>
                                 {faq.title}
                             </S.QuestionBox>
                         ))
-                        : qnaQuestions.map((item, index) => (
+                )   :   (
+                        qnaQuestions.map((item, index) => (
                             <S.QuestionContainer key={index}> {/* 수정된 부분: Q&A에서도 QuestionContainer 사용 */}
                                 <S.QuestionBox onClick={() => handleQuestionClick(item.question)}>
                                     {item.question}
@@ -109,7 +110,6 @@ function QnA () {
                     ))
                 )}
             </S.QuestionGroup>
-            
             
             {/* Q&A 탭일 때만 페이지네이션을 표시 */}
             {activeTab === "Q&A" && (
