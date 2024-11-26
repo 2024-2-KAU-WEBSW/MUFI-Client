@@ -9,11 +9,12 @@ function CustomFrame () {
     const [avatars, setAvatars] = useState([]); // 프레임에 추가된 아바타들
     // 상태 추가: 선택된 색상
     const [frameColor, setFrameColor] = useState('#ffffff'); // 초기값은 흰색
+    
 
     // 아바타 클릭 시 추가
-    const handleAvatarClick = (src) => {
+    const handleAvatarClick = (src, x, y) => {
         setAvatars((prev) => {
-            const newAvatar = { id: Date.now(), src, x: 0, y: 0 };
+            const newAvatar = { id: Date.now(), src, x, y };
             console.log('Adding new avatar:', newAvatar);
             return [...prev, newAvatar];
         });
@@ -52,19 +53,19 @@ function CustomFrame () {
                 <S.AvatarSection>
                     <S.AvatarLabel>무피냥이 아바타</S.AvatarLabel>
                     <S.AvatarImage
-                    src={AvatarImage}
-                    alt="image3"
-                    onClick={() => handleAvatarClick(AvatarImage)}
+                        src={AvatarImage}
+                        alt="image3"
+                        onClick={() => handleAvatarClick(AvatarImage, 0, -300)}
                     />
                     <S.AvatarImage
                         src={AvatarImage}
                         alt="image3"
-                        onClick={() => handleAvatarClick(AvatarImage)}
+                        onClick={() => handleAvatarClick(AvatarImage, 0, -100)}
                     />
                     <S.AvatarImage
                         src={AvatarImage}
                         alt="image3"
-                        onClick={() => handleAvatarClick(AvatarImage)}
+                        onClick={() => handleAvatarClick(AvatarImage, 0, 100)}
                     />
                 </S.AvatarSection>
 
@@ -74,8 +75,8 @@ function CustomFrame () {
                     <Draggable
                         key={avatar.id}
                         defaultPosition={{ x: avatar.x, y: avatar.y}}
-                        bounds="parent" // 프레임 안에서만 이동 가능
-                        onStop={(e, data) => handleStop(avatar.id, data)} // 드래그 종료 시 위치 업데이트
+                        
+                        onStop={(e, data) => handleStop(avatar.id, data)}
                     >
                         <S.DraggableAvatar src={avatar.src} alt="draggable-avatar" />
                     </Draggable>
@@ -90,14 +91,14 @@ function CustomFrame () {
                 <S.ColorSection>
                     <S.ThemeLabel>프레임 색상</S.ThemeLabel>
                     <S.FrameColorGroup>
-                        <S.ColorOption color="red" onClick={() => handleColorChange('red')} />
-                        <S.ColorOption color="blue" onClick={() => handleColorChange('blue')} />
-                        <S.ColorOption color="yellow" onClick={() => handleColorChange('yellow')} />
-                        <S.ColorOption color="green" onClick={() => handleColorChange('green')} />
-                        <S.ColorOption color="pink" onClick={() => handleColorChange('pink')} />
-                        <S.ColorOption color="purple" onClick={() => handleColorChange('purple')} />
-                        <S.ColorOption color="orange" onClick={() => handleColorChange('orange')} />
-                        <S.ColorOption color="gray" onClick={() => handleColorChange('gray')} />
+                        <S.ColorOption color="#D52727" onClick={() => handleColorChange('#D52727')} />
+                        <S.ColorOption color="#EB1D8E" onClick={() => handleColorChange('#EB1D8E')} />
+                        <S.ColorOption color="#C157EB" onClick={() => handleColorChange('#C157EB')} />
+                        <S.ColorOption color="#1875EE" onClick={() => handleColorChange('#1875EE')} />
+                        <S.ColorOption color="#F8871D" onClick={() => handleColorChange('#F8871D')} />
+                        <S.ColorOption color="#49BEBA" onClick={() => handleColorChange('#49BEBA')} />
+                        <S.ColorOption color="#F5F5F5" onClick={() => handleColorChange('#F5F5F5')} />
+                        <S.ColorOption color="#000000" onClick={() => handleColorChange('#000000')} />
                     </S.FrameColorGroup>
                     <S.ThemeLabel>프레임 테마</S.ThemeLabel>
                     <S.FrameThemeGroup>
