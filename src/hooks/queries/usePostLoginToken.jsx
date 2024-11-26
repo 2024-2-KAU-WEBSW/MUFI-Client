@@ -17,6 +17,7 @@ const usePostLoginToken = () => {
         window.localStorage.setItem('LOGIN_TOKEN', tokenDto.accessToken);
         window.localStorage.setItem('LOGIN_REFRESH_TOKEN', tokenDto.refreshToken);
         window.localStorage.setItem('MemberId', data.memberId);
+        window.localStorage.setItem('USER_NAME',data.socialNickname);
         console.log('로그인 성공!');
         navigate('/');
       }
