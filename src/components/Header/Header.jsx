@@ -7,11 +7,18 @@ import { useEffect, useState } from 'react';
 function Header() {
     const navigate = useNavigate();
     const [activeLink, setActiveLink] = useState(null);
-    const [userName, setUserName] = useState(null);
+    const [userName, setUserName] = useState(localStorage.getItem('USER_NAME'));
 
     useEffect(() => {
-        const storedUserName = localStorage.getItem("USER_NAME");
-        setUserName(storedUserName);
+        const handleStorageChange = () => {
+            setUserName(localStorage.getItem('USER_NAME'));
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
     }, []);
 
   const handleClick = (link) => {
