@@ -8,12 +8,15 @@ export const fetchGalleryImg = async () => {
     return response.data;
 };
 
-const useGetGalleryImg = ()=>{
+const useGetGalleryImg = () => {
     const { data, isLoading, isError } = useSuspenseQuery({
         queryKey: GALLERY_QUERY_KEY,
         queryFn: () => fetchGalleryImg(),
+        onError: (error) => {
+            console.error('Error fetching gallery images:', error);
+        },
     });
-    return  { data, isLoading, isError };
+    return { data, isLoading, isError };
 };
 
 export default useGetGalleryImg;
