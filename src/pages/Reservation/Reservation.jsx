@@ -21,14 +21,65 @@ function Reservation() {
     fileName: '',
   });
 
+  const [distance, setDistance] = useState('약 0.0km');
+  const [price, setPrice] = useState('₩ 500,000');
+
   const handleInputChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
+
+    if (field === 'address') {
+      updateDistanceAndPrice(value);
+    }
+  };
+
+  const updateDistanceAndPrice = (address) => {
+    if (address.includes('서울')) {
+      setDistance('약 107km');
+      setPrice('₩ 700,000');
+    } else if (address.includes('경기도')) {
+      setDistance('약 71.7km');
+      setPrice('₩ 600,000');
+    } else if (address.includes('강원도')) {
+      setDistance('약 125km');
+      setPrice('₩ 700,000');
+    } else if (address.includes('충청북도')) {
+      setDistance('약 0.0km');
+      setPrice('₩ 500,000');
+    } else if (address.includes('충청남도')) {
+      setDistance('약 91.6km');
+      setPrice('₩ 600,000');
+    } else if (address.includes('전라북도')) {
+      setDistance('약 129km');
+      setPrice('₩ 700,000');
+    } else if (address.includes('전라남도')) {
+      setDistance('약 230km');
+      setPrice('₩ 900,000');
+    } else if (address.includes('경상북도')) {
+      setDistance('약 121km');
+      setPrice('₩ 700,000');
+    } else if (address.includes('경상남도')) {
+      setDistance('약 163km');
+      setPrice('₩ 800,000');
+    } else if (address.includes('제주도')) {
+      setDistance('약 395km');
+      setPrice('₩ 1,000,000');
+    } else {
+      setDistance('약 0.0km');
+      setPrice('₩ 500,000');
+    }
   };
 
   useEffect(() => {
     const days = new Date(selectedYear, selectedMonth, 0).getDate();
     setDaysInMonth(days);
   }, [selectedYear, selectedMonth]);
+
+  const handleEmailClick = () => {
+    const email = "ghtnakdmf123@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+      alert("MUFI 이메일 주소를 복사했습니다.");
+    });
+  };
 
   return (
     <S.ReservationWrapper>
@@ -39,8 +90,14 @@ function Reservation() {
           <S.QuickInquire>
             빠른 문의
             <S.QuickInquireIcons>
-              <RiKakaoTalkFill />
-              <MdOutlineEmail />
+              <RiKakaoTalkFill
+                onClick={() => window.open('https://url.kr/5bi34w', '_blank')}
+                style={{ cursor: 'pointer' }}
+              />
+              <MdOutlineEmail
+                onClick={handleEmailClick}
+                style={{ cursor: 'pointer' }}
+              />
             </S.QuickInquireIcons>
           </S.QuickInquire>
           <S.SelectDate>
@@ -136,18 +193,24 @@ function Reservation() {
               min="1"
               max="100"
               value={formData.booths}
-              onChange={(e) => handleInputChange('booths', e.target.value)}
-            />
-            <input
-              type="file"
-              accept=".pdf"
               onChange={(e) => {
-                const file = e.target.files[0];
-                if (file) {
-                  handleInputChange('fileName', file.name);
-                }
+                const value = Math.min(Number(e.target.value), 100); 
+                handleInputChange('booths', value >= 1 ? value : ''); 
               }}
             />
+            <label className="custom-file-upload">
+              {formData.fileName || '프레임 PDF 파일이 있다면 업로드해주세요.'}
+              <input
+                type="file"
+                accept=".pdf"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    handleInputChange('fileName', file.name);
+                  }
+                }}
+              />
+            </label>
           </S.ReservationForm>
         </S.FormContainer>
         <S.CheckContainer>
@@ -175,14 +238,14 @@ function Reservation() {
               <S.StyledUserIcon />
             </S.DistanceContainer>
             <S.StyledLine />
-            약 0.0km
+            {distance}
           </S.DistanceCheck>
           <S.EstimateCheck>
             <S.EstimateText>
               예상 금액:
             </S.EstimateText>
             <S.EstimateAmount>
-              ₩ 000,000 
+              {price}
             </S.EstimateAmount>
           </S.EstimateCheck>
           <S.EstimateInfo>표시되는 예상 금액은 실제 견적과 다를 수 있습니다.</S.EstimateInfo>

@@ -124,33 +124,34 @@ export const ReservationForm = styled.form`
   }
 
   input[type="file"] {
+    display: none;
+  }
+
+  .custom-file-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 58rem;
     height: 6rem;
     font-size: 1.5rem;
+    font-weight: 500;
     padding: 0.8rem;
     background-color: ${({ theme }) => theme.colors.light_gray};
     color: #000000;
     cursor: pointer;
+    border: 1px solid #000000;
     border-radius: 999px;
-
-    /* 커서 위에 올렸을 때 효과 */
-    &:hover {
-
-    }
-
-    /* 클릭했을 때 효과 */
-    &:focus {
-
-    }
+    text-align: center;
   }
 `;
 
 export const PhoneNumber = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 1rem;
   margin: 2rem 0;
+  width: 58rem;
 
   svg {
     width: 2rem;
