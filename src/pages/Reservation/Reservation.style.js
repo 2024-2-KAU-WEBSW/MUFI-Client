@@ -89,7 +89,7 @@ export const ReservContainerMiddle = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 2rem;
-  margin-bottom: 15rem;
+  margin-bottom: 0rem;
 `;
 
 export const FormContainer = styled.div`
@@ -260,9 +260,8 @@ export const EstimateInfo = styled.p`
 `;
 
 export const InquiryButton = styled.button`
-  position: absolute;
-  right: 10%;
-  top: 185%;
+  position: relative;
+  left: 35%;
   width: 18rem;
   height: 8rem;
   background-image: url(${ReservButton});

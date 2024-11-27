@@ -99,7 +99,7 @@ function Reservation() {
 
     postReservFormMutation.mutate(requestBody, {
       onSuccess: () => {
-        alert("문의해주셔서 감사합니다. 견적 메세지가 카카오톡 ‘무피'에서 전송될 예정입니다.");
+        alert("문의해주셔서 감사합니다. 자세한 견적 메세지가 카카오톡 ‘무피'에서 전송될 예정입니다.");
       },
       onError: () => {
         alert('요청 처리 중 문제가 발생했습니다. 다시 시도해주세요.');
@@ -278,9 +278,9 @@ function Reservation() {
             </S.EstimateAmount>
           </S.EstimateCheck>
           <S.EstimateInfo>표시되는 예상 금액은 실제 견적과 다를 수 있습니다.</S.EstimateInfo>
-          <S.InquiryButton onClick={handleSubmit} />
         </S.CheckContainer>
       </S.ReservContainerMiddle>
+      <S.InquiryButton onClick={handleSubmit} />
     </S.ReservationWrapper>
   );
 }

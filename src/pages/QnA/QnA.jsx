@@ -6,9 +6,9 @@ function QnA() {
     const [activeTab, setActiveTab] = useState("FAQ");
     const [isWriting, setIsWriting] = useState(false);
     const [selectedFaq, setSelectedFaq] = useState(null);
-    const [formData, setFormData] = useState({ title: "", content: "" }); // 입력 데이터 상태 추가
+    const [formData, setFormData] = useState({ title: "", content: "" });
 
-    const { mutate: submitQNAForm, isLoading } = usePostQNAForm(); // usePostQNAForm 사용
+    const { mutate: submitQNAForm, isLoading } = usePostQNAForm();
 
     const faqQuestions = [
         { id: 1, title: "인화사이즈는 어떻게 되나요?", content: "인화사이즈는 A4, A5 사이즈를 지원합니다." },
@@ -29,15 +29,16 @@ function QnA() {
     };
 
     const handleSave = () => {
-        // 작성 데이터 전송 로직 추가
         if (formData.title.trim() && formData.content.trim()) {
             submitQNAForm(formData, {
                 onSuccess: (data) => {
+                    alert("질문이 등록되었습니다. 관리자 답변을 기다려주세요.");
                     console.log('저장 성공:', data);
-                    setFormData({ title: "", content: "" }); // 입력 폼 초기화
-                    setIsWriting(false); // 작성 모드 종료
+                    setFormData({ title: "", content: "" }); 
+                    setIsWriting(false); 
                 },
                 onError: (error) => {
+                    alert('요청 처리 중 문제가 발생했습니다. 다시 시도해주세요.');
                     console.error('저장 실패:', error.message);
                 },
             });
