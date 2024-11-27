@@ -175,30 +175,20 @@ function Reservation() {
               <S.StyledUserIcon />
             </S.DistanceContainer>
             <S.StyledLine />
-            약 4.4km
+            약 0.0km
           </S.DistanceCheck>
           <S.EstimateCheck>
             <S.EstimateText>
               예상 금액:
             </S.EstimateText>
             <S.EstimateAmount>
-              ₩ 999,999 
+              ₩ 000,000 
             </S.EstimateAmount>
           </S.EstimateCheck>
           <S.EstimateInfo>표시되는 예상 금액은 실제 견적과 다를 수 있습니다.</S.EstimateInfo>
           <S.InquiryButton />
         </S.CheckContainer>
       </S.ReservContainerMiddle>
-      <S.ReservContainerBottom>
-        <S.TermsTitle>개인정보 수집 및 이용 동의</S.TermsTitle>
-        <S.TermsAndCond>
-          개인정보 수집 및 이용 동의 내용
-        </S.TermsAndCond>
-        <S.TermsTitle>개인정보 제3자 제공 동의</S.TermsTitle>
-        <S.TermsAndCond>
-          개인정보 제3자 제공 동의 내용
-        </S.TermsAndCond>
-      </S.ReservContainerBottom>
     </S.ReservationWrapper>
   );
 }

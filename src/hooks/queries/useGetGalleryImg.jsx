@@ -1,10 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { aiInstance } from "../../../apis/client";
+import { get } from '../../apis/api';
 
 export const GALLERY_QUERY_KEY = ['GALLERY_IMAGE_DATA'];
 
 export const fetchGalleryImg = async () => {
-    const response = await aiInstance.get('/api/gallery/image');
+    const response = await get('/api/gallery/image');
     return response.data;
 };
 

@@ -89,6 +89,7 @@ export const ReservContainerMiddle = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 2rem;
+  margin-bottom: 15rem;
 `;
 
 export const FormContainer = styled.div`
