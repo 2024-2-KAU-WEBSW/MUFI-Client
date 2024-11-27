@@ -175,7 +175,7 @@ function Reservation() {
             <input
               type="text"
               placeholder="행사명을 입력해주세요."
-              maxLength="10"
+              maxLength="15"
               value={formData.event}
               onChange={(e) => handleInputChange('event', e.target.value)}
             />

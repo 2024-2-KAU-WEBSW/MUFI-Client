@@ -16,7 +16,7 @@ export const ReservationWrapper = styled.div`
 `;
 
 export const ReservContainerTop = styled.div`
-  width: 80%;
+  width: 75%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,7 +25,7 @@ export const ReservContainerTop = styled.div`
 export const SharedCalendar = styled.div`
   width: 50rem;
   height: 50rem;
-  border: 2px solid #2f16ff;
+  border: 2px solid none;
 `;
 
 export const TopHalf = styled.div`
