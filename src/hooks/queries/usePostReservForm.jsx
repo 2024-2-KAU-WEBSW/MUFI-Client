@@ -1,8 +1,8 @@
-import { serverInstance } from "../../../apis/client"
+import { useMutation } from '@tanstack/react-query';
 import { post } from '../../apis/api';
 
 export const postReservForm = async (body) => {
-    const response =  await serverInstance.post('/api/reservation/register', body);
+    const response =  await post('/api/reservation/register', body);
     return response.data;
 };
 

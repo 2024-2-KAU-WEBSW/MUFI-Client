@@ -1,8 +1,8 @@
-import { serverInstance } from "../../../apis/client"
 import { post } from '../../apis/api';
+import { useMutation } from '@tanstack/react-query';
 
 export const postQNAForm = async (body) => {
-    const response =  await serverInstance.post('/api/qna/register', body);
+    const response =  await post('/api/qna/register', body);
     return response.data;
 };
 
