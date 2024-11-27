@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsDashLg } from "react-icons/bs";
+import usePostReservForm from '../../hooks/queries/usePostReservForm';
 
 function Reservation() {
   const [selectedYear, setSelectedYear] = useState(2024);
   const [selectedMonth, setSelectedMonth] = useState(1);
+  const [selectedDay, setSelectedDay] = useState(1);
   const [daysInMonth, setDaysInMonth] = useState(31);
 
   const [formData, setFormData] = useState({
@@ -23,6 +25,8 @@ function Reservation() {
 
   const [distance, setDistance] = useState('약 0.0km');
   const [price, setPrice] = useState('₩ 500,000');
+
+  const postReservFormMutation = usePostReservForm();
 
   const handleInputChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
@@ -81,6 +85,28 @@ function Reservation() {
     });
   };
 
+  const handleSubmit = () => {
+    const formattedDate = `${selectedYear}-${String(selectedMonth).padStart(2, '0')}-${String(selectedDay).padStart(2, '0')}`;
+    const requestBody = {
+      Date: formattedDate,
+      userName: formData.name,
+      fesName: formData.event,
+      phone: Number(`${formData.phone1}${formData.phone2}${formData.phone3}`),
+      address: formData.address,
+      addtionalAddress: formData.detailAddress,
+      photobooth: Number(formData.booths),
+    };
+
+    postReservFormMutation.mutate(requestBody, {
+      onSuccess: () => {
+        alert("문의해주셔서 감사합니다. 견적 메세지가 카카오톡 ‘무피'에서 전송될 예정입니다.");
+      },
+      onError: () => {
+        alert('요청 처리 중 문제가 발생했습니다. 다시 시도해주세요.');
+      },
+    });
+  };
+
   return (
     <S.ReservationWrapper>
       <S.ReservContainerTop>
@@ -121,7 +147,10 @@ function Reservation() {
                 </option>
               ))}
             </select>
-            <select>
+            <select
+              value={selectedDay}
+              onChange={(e) => setSelectedDay(Number(e.target.value))}
+            >
               {Array.from({ length: daysInMonth }, (_, i) => i + 1).map((day) => (
                 <option key={day} value={day}>
                   {day}일
@@ -249,7 +278,7 @@ function Reservation() {
             </S.EstimateAmount>
           </S.EstimateCheck>
           <S.EstimateInfo>표시되는 예상 금액은 실제 견적과 다를 수 있습니다.</S.EstimateInfo>
-          <S.InquiryButton />
+          <S.InquiryButton onClick={handleSubmit} />
         </S.CheckContainer>
       </S.ReservContainerMiddle>
     </S.ReservationWrapper>
