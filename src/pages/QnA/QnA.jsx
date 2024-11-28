@@ -1,7 +1,11 @@
-import useGetFaqTitle from '../../hooks/queries/useGetFaqTitle';
 import * as S from './QnA.style';
 import React, { useState } from 'react';
 import ChatbotLogo from '../../assets/svg/챗봇로고.svg';
+import useGetFaqTitle from '../../hooks/queries/useGetFaqTitle';
+import usePostFaqContent from '../../hooks/queries/usePostFaqContent';
+import useGetQnaTitle from '../../hooks/queries/useGetQnaTitle';
+import usePostQnaContent from '../../hooks/queries/usePostQnaContent';
+import usePostQnaRegister from '../../hooks/queries/usePostQnaRegister';
 
 function QnA () {
     const [activeTab, setActiveTab] = useState("FAQ"); //usestate 이용
@@ -9,30 +13,47 @@ function QnA () {
     const [selectedFaq, setSelectedFaq] = useState(null);
     const [selectedQnA, setSelectedQnA] = useState(null); // 선택된 Q&A 질문
     const [isAnswered, setIsAnswered] = useState(false); // qna답변 여부
-    const faqtitle = useGetFaqTitle(); //title
+    const faqtitleAPI = useGetFaqTitle(); //faqtitle api
+    const faqcontentAPI = usePostFaqContent(); //faqcontent api
+    const qnatitleAPI = useGetQnaTitle(); //qnatitle api
+    const qnacontentAPI = usePostQnaContent(); //qnacontnet api
+    const qnaregisterAPI = usePostQnaRegister();
 
     // FAQ와 Q&A의 질문 목록
-    const faqQuestions = faqtitle; //title api 부분
-    
-    const qnaQuestions = [
-        { question: "인화사이즈는 어떻게 되나요?", answered: false },
-        { question: "촬영부스 인원 제한이 있나요?", answered: true },
-        { question: "부스는 최대 몇 개까지 대여 가능한가요?", answered: true }
-    ];
+    const faqQuestions = faqtitleAPI; //faqtitle api 부분
+    const qnaQuestions = qnatitleAPI; //qnatitle api 부분
 
+    //작성하기 버튼 부분
     const handleWriteButtonClick = () => {
         setIsWriting(true); // 작성 모드로 전환
         setActiveTab("Q&A"); //작성 모드를 활성화하면 q&a 탭이 진하게 보이도록 설정
-    };
 
+        qnaregisterAPI.mutate();
+    };
     const handleSave = () => {
         // 저장 버튼을 눌렀을 때 수행할 동작
         setIsWriting(false); // 작성 모드를 종료
+
+        
     };
+
     //faq버튼부분
     // FAQ 질문 클릭 시 상세보기 화면으로 전환
     const handleFaqClick = (faq) => {
         setSelectedFaq(faq);
+        // POST 요청 실행(api추가부분)
+        faqcontentAPI.mutate(
+            { title: faq.title, content: faq.content }, // 서버로 보낼 데이터
+            {
+                onSuccess: (data) => {
+                    console.log("POST 성공:", data);
+                    console.log("POST된 제목:", data.title); // 서버로부터 받은 응답
+                },
+                onError: (error) => {
+                    console.error("POST 실패:", error);
+                },
+            }
+        );
     };
 
     // 상세보기 화면에서 목록으로 돌아가기
@@ -46,6 +67,8 @@ function QnA () {
         console.log("Is Answered:", item.answered); // 답변 상태 확인
         setSelectedQnA(item); // 선택된 질문 설정
         setIsAnswered(item.answered); // 답변 상태 설정
+
+        qnacontentAPI.mutate(); //api추가부분
     };
 
     const handleBackToListClick = () => {
