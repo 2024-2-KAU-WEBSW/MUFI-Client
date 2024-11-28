@@ -1,19 +1,18 @@
+import useGetFaqTitle from '../../hooks/queries/useGetFaqTitle';
 import * as S from './QnA.style';
 import React, { useState } from 'react';
-
+import ChatbotLogo from '../../assets/svg/챗봇로고.svg';
 
 function QnA () {
     const [activeTab, setActiveTab] = useState("FAQ"); //usestate 이용
     const [isWriting, setIsWriting] = useState(false); //작성모드상태 추가
     const [selectedFaq, setSelectedFaq] = useState(null);
+    const [selectedQnA, setSelectedQnA] = useState(null); // 선택된 Q&A 질문
+    const [isAnswered, setIsAnswered] = useState(false); // qna답변 여부
+    const faqtitle = useGetFaqTitle(); //title
 
     // FAQ와 Q&A의 질문 목록
-    const faqQuestions = [
-        { id: 1, title: "인화사이즈는 어떻게 되나요?", content: "인화사이즈는 A4, A5 사이즈를 지원합니다." },
-        { id: 2, title: "촬영부스 인원 제한이 있나요?", content: "촬영부스는 최대 4명까지 가능합니다." },
-        { id: 3, title: "부스는 최대 몇 개까지 대여 가능한가요?", content: "최대 3개까지 대여가 가능합니다." },
-        { id: 4, title: "예약을 취소하거나 변경하고 싶습니다.", content: "예약 취소 및 변경은 예약일 기준 3일 전까지 가능합니다." },
-    ];
+    const faqQuestions = faqtitle; //title api 부분
     
     const qnaQuestions = [
         { question: "인화사이즈는 어떻게 되나요?", answered: false },
@@ -30,7 +29,7 @@ function QnA () {
         // 저장 버튼을 눌렀을 때 수행할 동작
         setIsWriting(false); // 작성 모드를 종료
     };
-
+    //faq버튼부분
     // FAQ 질문 클릭 시 상세보기 화면으로 전환
     const handleFaqClick = (faq) => {
         setSelectedFaq(faq);
@@ -39,6 +38,18 @@ function QnA () {
     // 상세보기 화면에서 목록으로 돌아가기
     const handleBackClick = () => {
         setSelectedFaq(null);
+    };
+
+    //qna버튼부분
+    const handleQuestionClick = (item) => {
+        console.log("Selected QnA:", item); // 클릭한 질문 확인
+        console.log("Is Answered:", item.answered); // 답변 상태 확인
+        setSelectedQnA(item); // 선택된 질문 설정
+        setIsAnswered(item.answered); // 답변 상태 설정
+    };
+
+    const handleBackToListClick = () => {
+        setSelectedQnA(null); // 선택 해제
     };
     
     return (
@@ -51,6 +62,34 @@ function QnA () {
                 <S.DividerLine />
                 <S.FaqDetailContent>{selectedFaq.content}</S.FaqDetailContent>
             </S.FaqDetailWrapper>
+            </>
+        ) : selectedQnA ? ( // **Q&A 상세 화면 추가**
+            <>  
+                {console.log("Rendering selectedQnA:", selectedQnA)}
+                {console.log("Rendering isAnswered:", isAnswered)}
+                <S.BackButton onClick={handleBackToListClick}>← BACK</S.BackButton>
+                <S.QnADetailWrapper>
+                    <S.QnADetailTitle>{selectedQnA.question}</S.QnADetailTitle>
+                    <S.DividerLine />
+                    <S.QnADetailContent>
+                        {isAnswered
+                        ? "행사에 부스가 여러 개 필요할 때 최대한 대여하고 싶습니다. 혹시 몇 개까지 대여가 가능한지요?"
+                        : "답변이 준비 중입니다. 조금만 기다려 주세요!"}
+                    </S.QnADetailContent>
+                </S.QnADetailWrapper>
+
+                        {/* 답변 완료 상태일 때만 렌더링 */}
+                        {isAnswered && (
+                        <>
+                          <S.AnswerWrapper>
+                            <S.LogoImage src={ChatbotLogo} alt="챗봇 로고" />
+                            <S.AnsweredBox>
+                                <p>현재 한 가지 행사에 대해 가능한 최대 부스 개수는 8개입니다.</p>
+                                <p>감사합니다!</p>
+                            </S.AnsweredBox>
+                          </S.AnswerWrapper>
+                        </>
+                    )}
             </>
         ) : (
             // FAQ 목록 화면
@@ -98,7 +137,7 @@ function QnA () {
                         ))
                         : qnaQuestions.map((item, index) => (
                             <S.QuestionContainer key={index}> {/* 수정된 부분: Q&A에서도 QuestionContainer 사용 */}
-                                <S.QuestionBox onClick={() => handleQuestionClick(item.question)}>
+                                <S.QuestionBox onClick={() => handleQuestionClick(item)}>
                                     {item.question}
                                 </S.QuestionBox>
                                 <S.AnswerStatus >
