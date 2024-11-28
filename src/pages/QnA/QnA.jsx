@@ -27,12 +27,14 @@ function QnA () {
     const handleWriteButtonClick = () => {
         setIsWriting(true); // 작성 모드로 전환
         setActiveTab("Q&A"); //작성 모드를 활성화하면 q&a 탭이 진하게 보이도록 설정
+
+        qnaregisterAPI.mutate();
     };
     const handleSave = () => {
         // 저장 버튼을 눌렀을 때 수행할 동작
         setIsWriting(false); // 작성 모드를 종료
+
         
-        qnaregisterAPI.mutate();
     };
 
     //faq버튼부분
