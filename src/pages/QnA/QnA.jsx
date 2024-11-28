@@ -1,5 +1,5 @@
 import * as S from './QnA.style';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ChatbotLogo from '../../assets/svg/챗봇로고.svg';
 import useGetFaqTitle from '../../hooks/queries/useGetFaqTitle';
 import usePostFaqContent from '../../hooks/queries/usePostFaqContent';
@@ -20,9 +20,14 @@ function QnA () {
     const qnaregisterAPI = usePostQnaRegister();
 
     // FAQ와 Q&A의 질문 목록
-    const faqQuestions = faqtitleAPI; //faqtitle api 부분
-    const qnaQuestions = qnatitleAPI; //qnatitle api 부분
+    const faqQuestions = Object.values(faqtitleAPI.data.data); //faqtitle api 부분
+    const qnaQuestions = Object.values(qnatitleAPI[2]); //qnatitle api 부분
 
+
+    useEffect(()=> {
+        console.log(qnaQuestions[2]);
+
+    },[]);
     //작성하기 버튼 부분
     const handleWriteButtonClick = () => {
         setIsWriting(true); // 작성 모드로 전환
@@ -153,12 +158,12 @@ function QnA () {
                     </>
                 ) : (
                     activeTab === "FAQ"
-                    ? faqQuestions.map((faq) => (
+                    ? faqQuestions && faqQuestions.map((faq) => (
                         <S.QuestionBox key={faq.id} onClick={() => handleFaqClick(faq)}>
                                 {faq.title}
                             </S.QuestionBox>
                         ))
-                        : qnaQuestions.map((item, index) => (
+                        : qnaQuestions && qnaQuestions.map((item, index) => (
                             <S.QuestionContainer key={index}> {/* 수정된 부분: Q&A에서도 QuestionContainer 사용 */}
                                 <S.QuestionBox onClick={() => handleQuestionClick(item)}>
                                     {item.question}
