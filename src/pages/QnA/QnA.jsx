@@ -17,23 +17,21 @@ function QnA () {
     const faqcontentAPI = usePostFaqContent(); //faqcontent api
     const qnatitleAPI = useGetQnaTitle(); //qnatitle api
     const qnacontentAPI = usePostQnaContent(); //qnacontnet api
-    const qnaregisterAPI = usePostQnaRegister();
 
     // FAQ와 Q&A의 질문 목록
     const faqQuestions = Object.values(faqtitleAPI.data.data); //faqtitle api 부분
-    const qnaQuestions = Object.values(qnatitleAPI[2]); //qnatitle api 부분
+    const qnaQuestions = Object.values(qnatitleAPI.data.data);
 
 
     useEffect(()=> {
-        console.log(qnaQuestions[2]);
+        console.log(qnaQuestions);
+        console.log(faqQuestions);
 
     },[]);
     //작성하기 버튼 부분
     const handleWriteButtonClick = () => {
         setIsWriting(true); // 작성 모드로 전환
         setActiveTab("Q&A"); //작성 모드를 활성화하면 q&a 탭이 진하게 보이도록 설정
-
-        qnaregisterAPI.mutate();
     };
     const handleSave = () => {
         // 저장 버튼을 눌렀을 때 수행할 동작
@@ -47,18 +45,7 @@ function QnA () {
     const handleFaqClick = (faq) => {
         setSelectedFaq(faq);
         // POST 요청 실행(api추가부분)
-        faqcontentAPI.mutate(
-            { title: faq.title, content: faq.content }, // 서버로 보낼 데이터
-            {
-                onSuccess: (data) => {
-                    console.log("POST 성공:", data);
-                    console.log("POST된 제목:", data.title); // 서버로부터 받은 응답
-                },
-                onError: (error) => {
-                    console.error("POST 실패:", error);
-                },
-            }
-        );
+        faqcontentAPI.mutate(faq.id);
     };
 
     // 상세보기 화면에서 목록으로 돌아가기
@@ -67,13 +54,13 @@ function QnA () {
     };
 
     //qna버튼부분
-    const handleQuestionClick = (item) => {
-        console.log("Selected QnA:", item); // 클릭한 질문 확인
-        console.log("Is Answered:", item.answered); // 답변 상태 확인
-        setSelectedQnA(item); // 선택된 질문 설정
-        setIsAnswered(item.answered); // 답변 상태 설정
+    const handleQuestionClick = (qna) => {
+        console.log("Selected QnA:", qna); // 클릭한 질문 확인
+        console.log("Is Answered:", qna.answerDone); // 답변 상태 확인
+        setSelectedQnA(qna); // 선택된 질문 설정
+        setIsAnswered(qna.answerDone); // 답변 상태 설정
 
-        qnacontentAPI.mutate(); //api추가부분
+        qnacontentAPI.mutate(qna.id); //api추가부분
     };
 
     const handleBackToListClick = () => {
@@ -163,14 +150,14 @@ function QnA () {
                                 {faq.title}
                             </S.QuestionBox>
                         ))
-                        : qnaQuestions && qnaQuestions.map((item, index) => (
-                            <S.QuestionContainer key={index}> {/* 수정된 부분: Q&A에서도 QuestionContainer 사용 */}
-                                <S.QuestionBox onClick={() => handleQuestionClick(item)}>
-                                    {item.question}
+                        : qnaQuestions && qnaQuestions.map((qna) => (
+                            <S.QuestionContainer key={qna.id}> {/* 수정된 부분: Q&A에서도 QuestionContainer 사용 */}
+                                <S.QuestionBox onClick={() => handleQuestionClick(qna)}>
+                                    {qna.title}
                                 </S.QuestionBox>
                                 <S.AnswerStatus >
-                                    <S.StatusIcon answered={item.answered} />
-                                    {item.answered ? "답변 완료" : "답변 대기"}
+                                    <S.StatusIcon answered={qna.answerDone} />
+                                    {qna.answerDone ? "답변 완료" : "답변 대기"}
                                 </S.AnswerStatus>
                             </S.QuestionContainer>
                     ))

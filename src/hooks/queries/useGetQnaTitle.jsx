@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { get } from '../../apis/api';
 
-export const SUMMARY_QUERY_KEY = ['summaryData'];
+export const SUMMARY_QUERY_KEY = ['Qna_Title_Data'];
 
 export const fetchQnatitle = async () => {
     const response = await get('/api/qna/list');
