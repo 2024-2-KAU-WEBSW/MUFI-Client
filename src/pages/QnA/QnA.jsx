@@ -22,12 +22,6 @@ function QnA () {
     const faqQuestions = Object.values(faqtitleAPI.data.data); //faqtitle api 부분
     const qnaQuestions = Object.values(qnatitleAPI.data.data);
 
-
-    useEffect(()=> {
-        console.log(qnaQuestions);
-        console.log(faqQuestions);
-
-    },[]);
     //작성하기 버튼 부분
     const handleWriteButtonClick = () => {
         setIsWriting(true); // 작성 모드로 전환
@@ -43,9 +37,12 @@ function QnA () {
     //faq버튼부분
     // FAQ 질문 클릭 시 상세보기 화면으로 전환
     const handleFaqClick = (faq) => {
-        setSelectedFaq(faq);
         // POST 요청 실행(api추가부분)
-        faqcontentAPI.mutate(faq.id);
+      faqcontentAPI.mutate({"id":faq.id},{
+            onSuccess: (response) => {
+                setSelectedFaq(response);
+            }
+          });
     };
 
     // 상세보기 화면에서 목록으로 돌아가기
@@ -55,12 +52,13 @@ function QnA () {
 
     //qna버튼부분
     const handleQuestionClick = (qna) => {
-        console.log("Selected QnA:", qna); // 클릭한 질문 확인
-        console.log("Is Answered:", qna.answerDone); // 답변 상태 확인
-        setSelectedQnA(qna); // 선택된 질문 설정
         setIsAnswered(qna.answerDone); // 답변 상태 설정
 
-        qnacontentAPI.mutate(qna.id); //api추가부분
+        qnacontentAPI.mutate({"id":qna.id},{
+            onSuccess: (response) => {
+                setSelectedQnA(response);
+            }
+          }); //api추가부분
     };
 
     const handleBackToListClick = () => {
@@ -80,15 +78,13 @@ function QnA () {
             </>
         ) : selectedQnA ? ( // **Q&A 상세 화면 추가**
             <>  
-                {console.log("Rendering selectedQnA:", selectedQnA)}
-                {console.log("Rendering isAnswered:", isAnswered)}
                 <S.BackButton onClick={handleBackToListClick}>← BACK</S.BackButton>
                 <S.QnADetailWrapper>
-                    <S.QnADetailTitle>{selectedQnA.question}</S.QnADetailTitle>
+                    <S.QnADetailTitle>{selectedQnA.title}</S.QnADetailTitle>
                     <S.DividerLine />
                     <S.QnADetailContent>
                         {isAnswered
-                        ? "행사에 부스가 여러 개 필요할 때 최대한 대여하고 싶습니다. 혹시 몇 개까지 대여가 가능한지요?"
+                        ? <>{selectedQnA.content}</>
                         : "답변이 준비 중입니다. 조금만 기다려 주세요!"}
                     </S.QnADetailContent>
                 </S.QnADetailWrapper>

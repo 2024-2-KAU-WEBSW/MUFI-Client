@@ -3,7 +3,7 @@ import { post } from '../../apis/api';
 
 export const postQnacontent = async (body) => {
     const response =  await post('/api/qna/content', body);
-    return response.data;
+    return response.data.data;
 };
 
 const usePostQnaContent = () => {

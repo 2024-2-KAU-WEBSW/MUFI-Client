@@ -3,7 +3,7 @@ import { post } from '../../apis/api';
 
 export const postFaqcontent = async (body) => {
     const response =  await post('/api/faq/content', body);
-    return response.data;
+    return response.data.data;
 };
 
 const usePostFaqContent = () => {
