@@ -95,7 +95,7 @@ function QnA () {
                           <S.AnswerWrapper>
                             <S.LogoImage src={ChatbotLogo} alt="챗봇 로고" />
                             <S.AnsweredBox>
-                                <p>현재 한 가지 행사에 대해 가능한 최대 부스 개수는 8개입니다.</p>
+                                <p>{selectedQnA.answer}</p>
                                 <p>감사합니다!</p>
                             </S.AnsweredBox>
                           </S.AnswerWrapper>
