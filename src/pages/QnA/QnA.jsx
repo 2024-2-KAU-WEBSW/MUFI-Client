@@ -5,7 +5,6 @@ import useGetFaqTitle from '../../hooks/queries/useGetFaqTitle';
 import usePostFaqContent from '../../hooks/queries/usePostFaqContent';
 import useGetQnaTitle from '../../hooks/queries/useGetQnaTitle';
 import usePostQnaContent from '../../hooks/queries/usePostQnaContent';
-import usePostQnaRegister from '../../hooks/queries/usePostQnaRegister';
 
 function QnA () {
     const [activeTab, setActiveTab] = useState("FAQ"); //usestate 이용
@@ -13,10 +12,10 @@ function QnA () {
     const [selectedFaq, setSelectedFaq] = useState(null);
     const [selectedQnA, setSelectedQnA] = useState(null); // 선택된 Q&A 질문
     const [isAnswered, setIsAnswered] = useState(false); // qna답변 여부
-    const faqtitleAPI = useGetFaqTitle(); //faqtitle api
-    const faqcontentAPI = usePostFaqContent(); //faqcontent api
-    const qnatitleAPI = useGetQnaTitle(); //qnatitle api
-    const qnacontentAPI = usePostQnaContent(); //qnacontnet api
+    const faqtitleAPI = useGetFaqTitle();
+    const faqcontentAPI = usePostFaqContent();
+    const qnatitleAPI = useGetQnaTitle();
+    const qnacontentAPI = usePostQnaContent();
 
     // FAQ와 Q&A의 질문 목록
     const faqQuestions = Object.values(faqtitleAPI.data.data); //faqtitle api 부분
