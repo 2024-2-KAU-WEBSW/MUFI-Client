@@ -1,10 +1,11 @@
 import * as S from './QnA.style';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ChatbotLogo from '../../assets/svg/챗봇로고.svg';
 import useGetFaqTitle from '../../hooks/queries/useGetFaqTitle';
 import usePostFaqContent from '../../hooks/queries/usePostFaqContent';
 import useGetQnaTitle from '../../hooks/queries/useGetQnaTitle';
 import usePostQnaContent from '../../hooks/queries/usePostQnaContent';
+import usePostQNAForm from '../../hooks/queries/usePostQNAForm';
 
 function QnA () {
     const [activeTab, setActiveTab] = useState("FAQ"); //usestate 이용
@@ -16,6 +17,8 @@ function QnA () {
     const faqcontentAPI = usePostFaqContent();
     const qnatitleAPI = useGetQnaTitle();
     const qnacontentAPI = usePostQnaContent();
+    const [formData, setFormData] = useState({ title: "", content: "" });
+    const { mutate: submitQNAForm, isLoading } = usePostQNAForm();
 
     // FAQ와 Q&A의 질문 목록
     const faqQuestions = Object.values(faqtitleAPI.data.data); //faqtitle api 부분
@@ -27,10 +30,29 @@ function QnA () {
         setActiveTab("Q&A"); //작성 모드를 활성화하면 q&a 탭이 진하게 보이도록 설정
     };
     const handleSave = () => {
-        // 저장 버튼을 눌렀을 때 수행할 동작
-        setIsWriting(false); // 작성 모드를 종료
+        if (formData.title.trim() && formData.content.trim()) {
+            submitQNAForm(formData, {
+                onSuccess: (data) => {
+                    alert("질문이 등록되었습니다. 관리자 답변을 기다려주세요.");
+                    console.log('저장 성공:', data);
+                    setFormData({ title: "", content: "" }); 
+                    setIsWriting(false); 
+                },
+                onError: (error) => {
+                    alert('요청 처리 중 문제가 발생했습니다. 다시 시도해주세요.');
+                    console.error('저장 실패:', error.message);
+                },
+            });
+        } else {
+            alert("제목과 내용을 모두 입력해주세요.");
+        }
 
         
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
     //faq버튼부분
@@ -134,10 +156,22 @@ function QnA () {
             {isWriting ? (
                     // 작성 모드일 때 입력 폼을 렌더링
                     <>
-                        <S.Input placeholder="제목을 입력하세요." />
-                        <S.TextArea placeholder="내용을 입력하세요." />
-                        <S.SaveButton onClick={handleSave}>등록</S.SaveButton>
-                    </>
+                    <S.Input
+                        name="title"
+                        placeholder="제목을 입력하세요."
+                        value={formData.title}
+                        onChange={handleInputChange}
+                    />
+                    <S.TextArea
+                        name="content"
+                        placeholder="내용을 입력하세요."
+                        value={formData.content}
+                        onChange={handleInputChange}
+                    />
+                    <S.SaveButton onClick={handleSave} disabled={isLoading}>
+                        {isLoading ? "등록 중..." : "등록"}
+                    </S.SaveButton>
+                </>
                 ) : (
                     activeTab === "FAQ"
                     ? faqQuestions && faqQuestions.map((faq) => (
