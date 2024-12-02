@@ -97,7 +97,7 @@ export const FormContainer = styled.div`
   font-size: 3.5rem;
   font-weight: 700;
   margin-top: 4rem;
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;

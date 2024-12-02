@@ -43,7 +43,7 @@ export const ArrowButton = styled.button`
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
-    margin: 0 20rem;
+    margin: 0 10%;
     background-color: unset; 
     box-shadow: none; 
 
