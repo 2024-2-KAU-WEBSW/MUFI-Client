@@ -295,3 +295,11 @@ export const TermsAndCond = styled.p`
   color: ${({ theme }) => theme.colors.gray};
   border: 2px solid #2f16ff;
 `;
+
+export const ErrorMessage = styled.p`
+  text-align: left;
+  color: red;
+  margin-top: -1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+`;
