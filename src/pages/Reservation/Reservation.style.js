@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ReservButton from '../../assets/svg/문의 버튼.svg';
-import DistLine from '../../assets/svg/DistLine.svg';
+import ReservButton from '../../assets/png/inqButton.png';
+import DistLine from '../../assets/png/DistLine.png';
 import { CiDeliveryTruck } from "react-icons/ci";
 import { AiOutlineUser } from "react-icons/ai";
 
