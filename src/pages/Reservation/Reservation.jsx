@@ -107,8 +107,7 @@ function Reservation() {
   return (
     <S.ReservationWrapper>
       <S.ReservContainerTop>
-        <CalendarComponent/>
-        <S.SharedCalendar />
+        <S.SharedCalendar><CalendarComponent/></S.SharedCalendar>
         <S.TopHalf>
           <S.InfoMessage>견적은 행사 위치 및 이동 거리에 따라 달라질 수 있습니다.</S.InfoMessage>
           <S.QuickInquire>
