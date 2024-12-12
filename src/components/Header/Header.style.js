@@ -16,7 +16,7 @@ export const HeaderWrapper = styled.header`
   }
 
   @media (max-width: 480px) {
-    height: 7rem;
+    height: 15rem;
     padding: 0.5rem 2rem;
     padding-left: 3rem;
   }
@@ -31,11 +31,11 @@ img {
     height: auto;
 
     @media (max-width: 768px) {
-      width: 8rem;
+      width: 10rem;
     }
 
     @media (max-width: 480px) {
-      width: 6rem;
+      width: 13rem;
     }
   }
 
@@ -58,6 +58,7 @@ height:11rem;
   }
 
   @media (max-width: 480px) {
+    flex-direction:column;
     gap: 1rem;
   }
 `;
@@ -78,7 +79,7 @@ ${({ theme }) => theme.fonts.r_20};
   }
 
   @media (max-width: 768px) {
-    ${({ theme }) => theme.fonts.r_17};
+    ${({ theme }) => theme.fonts.b_12};
   }
 
   @media (max-width: 480px) {
@@ -96,12 +97,12 @@ color: ${({ theme }) => theme.colors.gray};
 @media (max-width: 768px) {
     gap: 1rem;
     height: 3.8rem;
-    ${({ theme }) => theme.fonts.r_17};
+    ${({ theme }) => theme.fonts.b_12};
   }
 
   @media (max-width: 480px) {
     gap: 0.8rem;
     height: 3.2rem;
-    ${({ theme }) => theme.fonts.b_10};
+    ${({ theme }) => theme.fonts.b_12};
   }
 `;
