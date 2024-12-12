@@ -82,6 +82,7 @@ ${({ theme }) => theme.fonts.r_20};
   }
 
   @media (max-width: 480px) {
+    width: 100%;
     ${({ theme }) => theme.fonts.b_12};
   }
 `;
