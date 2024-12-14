@@ -25,9 +25,10 @@ background-color: ${({ theme }) => theme.colors.dark_red};
 width: 55rem;
 height:8rem;
 color: white;
-${({ theme }) => theme.fonts.b_32};
+font-size: 3rem;
+font-family: pretendard;
 border-radius: 10px;
-font-weight: 400;
+font-weight: 700;
 cursor: pointer;
 `;
 
