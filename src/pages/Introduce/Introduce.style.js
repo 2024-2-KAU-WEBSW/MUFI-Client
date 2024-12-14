@@ -265,8 +265,8 @@ export const PortfolioSubtitle = styled.div`
 export const PortfolioImage = styled.img`
   display: block;
   margin: 6.9rem 0;
-  height: auto; /* 비율 유지 */
-  margin-left: 8rem;
+  margin-left: 4%;
+  max-width: 90%;
 
   @media (max-width: 768px) {
     max-width: 80%;
