@@ -11,7 +11,7 @@ const CalendarComponent = () => {
       end: "2024-12-05",
     },
     {
-      title: "팝업행사",
+      title: "팝업 행사",
       start: "2024-12-10",
       end: "2024-12-10",
     },
