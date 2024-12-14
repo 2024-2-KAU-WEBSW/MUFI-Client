@@ -1,11 +1,11 @@
 .calendar-container {
-    width: 100%; /* 원하는 너비 비율로 설정 */
-    height: 240rem; /* 원하는 높이 설정 */
+    width: 50%; /* 원하는 너비 비율로 설정 */
+    height: 200rem; /* 원하는 높이 설정 */
     margin: 0 auto; /* 가운데 정렬 */
   }
   
   .fc {
-    font-size: 3rem; /* 폰트 크기를 조정 */
+    font-size: 2rem; /* 폰트 크기를 조정 */
   }
 
   .fc.fc-toolbar-title {
@@ -21,7 +21,17 @@
   .fc-button.fc-button-primary {
     font-size: 2rem; /* 버튼 텍스트 크기 */
     padding: 0.5rem 1rem; /* 버튼 내부 여백 */
-    border-radius: 5px; /* 버튼 모서리 */
+    border-radius: 4px; /* 버튼 모서리 */
+    position: fixed;
+    right: -40px;
+    background-color: #d9d9d9;
+    border-color: #ffffff;
+  }
+
+  .fc-button.fc-button-primary:hover,
+  .fc-button.fc-button-primary:active {
+      background-color: #616161;
+      border-color: #ffffff;
   }
   
   .fc-today-button.fc-button.fc-button-primary {
