@@ -95,7 +95,7 @@ export const DraggableAvatar = styled.img`
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
-  border: 0.2rem solid ${({ theme }) => theme.colors.white};
+  border: 1.5px solid ${({ theme }) => theme.colors.white};
   position: absolute; /* 드래그 시 위치 조정 가능 */
   cursor: grab; /* 마우스 커서를 손모양으로 변경 */
   &:active {
@@ -155,7 +155,7 @@ export const ColorOption = styled.div`
   border-radius: 50%;
   background-color: ${(props) => props.color || "white"};
   cursor: pointer;
-  border: 2px solid ${({ theme }) => theme.colors.white};
+  border: 1.5px solid ${({ theme }) => theme.colors.white};
   &:hover {
     opacity: 0.8;
   }
@@ -172,7 +172,7 @@ export const ButtonGroup = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8rem; /* 버튼 간 간격 */
+  gap: 6rem; /* 버튼 간 간격 */
   margin-top: -1rem; /* 위 요소와 간격 */
   width: 130rem; /* 그룹 전체 너비 */
   margin-bottom: 10rem;
